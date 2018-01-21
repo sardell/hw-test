@@ -8,7 +8,7 @@ import { Repository } from './repository';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+  styleUrls: ['./search.component.scss'],
   providers: [ SearchRepositoriesService ]
 })
 export class SearchComponent implements OnInit {
@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   }
 
   doSearch() {
-    if (this.txtQuery != null && this.txtQuery.length > 0) {
+    if (this.txtQuery != null && this.txtQuery.length > 1) {
       this.searchRepoService.getRepositories(this.txtQuery).subscribe(
         data => this.repositories = data.items
       );
