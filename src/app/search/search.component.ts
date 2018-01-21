@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchRepositoriesService } from './search-repositories.service';
+import { Router } from '@angular/router';
 
+import { SearchRepositoriesService } from './search-repositories.service';
+import { DetailsService } from '../details/details.service';
 import { Repository } from './repository';
 
 @Component({
@@ -10,12 +12,13 @@ import { Repository } from './repository';
   providers: [ SearchRepositoriesService ]
 })
 export class SearchComponent implements OnInit {
-  txtQuery: string = "";
-  repositories: Repository[];
-  repo: Repository;
-  data: Object;
+  private data: Object;
+  public txtQuery: string = "";
+  public repositories: Repository[];
 
-  constructor(private searchRepoService: SearchRepositoriesService) { }
+  constructor(private searchRepoService: SearchRepositoriesService,
+              private detailsService: DetailsService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,6 +29,10 @@ export class SearchComponent implements OnInit {
         data => this.repositories = data.items
       );
     }
+  }
+
+  getRepoDetails(repo) {
+    this.router.navigate(['/details'], repo.id);
   }
 
 }
