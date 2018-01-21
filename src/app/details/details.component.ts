@@ -10,9 +10,12 @@ import { DetailsService } from './details.service';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
+
 export class DetailsComponent implements OnInit {
   private subscription: Subscription;
   public details: Object;
+  public issues: Object;
+  public showIssues: boolean = false;
 
   constructor(private detailsService: DetailsService,
               private activatedRoute: ActivatedRoute ) {
@@ -20,11 +23,16 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.details = this.detailsService.getDetails();
     this.detailsService.getDetails(id).subscribe(
       data => this.details = data
     );
-    this.detailsService.getDetails(id);
+    this.detailsService.getIssues(id).subscribe(
+      data => this.issues = data
+    );
+  }
+
+  toggleIssues() {
+    this.showIssues === true ? this.showIssues = false : this.showIssues = true;
   }
 
 }

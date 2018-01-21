@@ -31,8 +31,4 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  getRepoDetails(repo) {
-    this.router.navigate(['/details'], repo.id);
-  }
-
 }
