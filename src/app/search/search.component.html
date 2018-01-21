@@ -1,3 +1,9 @@
-<p>
-  search works!
-</p>
+
+<input type="text" [(ngModel)]="txtQuery" (keyup.enter)="doSearch()">
+
+<ul *ngFor="let repo of repositories">
+  <li>
+    <a href="">{{ repo.name }}</a>
+    <p>{{ repo.description }}</p>
+  </li>
+</ul>
