@@ -11,6 +11,7 @@ import { Repository } from './repository';
   styleUrls: ['./search.component.scss'],
   providers: [ SearchRepositoriesService ]
 })
+
 export class SearchComponent implements OnInit {
   private data: Object;
   public txtQuery: string = "";
