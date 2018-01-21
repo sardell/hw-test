@@ -1,0 +1,9 @@
+
+<input type="text" [(ngModel)]="txtQuery" (keyup.enter)="doSearch()">
+
+<ul *ngFor="let repo of repositories">
+  <li>
+    <a href="javascript:void(0)" [routerLink]="['details', repo.full_name]">{{ repo.name }}</a>
+    <p>{{ repo.description }}</p>
+  </li>
+</ul>
