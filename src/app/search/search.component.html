@@ -1,9 +1,29 @@
+<section class="row search">
+  <div class="col-sm-12">
+    <h1>Search GitHub for a Repository</h1>
+  </div>
 
-<input type="text" [(ngModel)]="txtQuery" (keyup.enter)="doSearch()">
+  <div class="col-sm-6">
+    <div class="input-group mb-3">
+      <input class="search-input" 
+              type="text" 
+              class="form-control" 
+              placeholder="Enter the name of a repository" 
+              aria-label="Enter the name of a repository" 
+              [(ngModel)]="txtQuery" 
+              (keyup.enter)="doSearch()">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="doSearch()">Button</button>
+      </div>
+    </div>
+  </div>
+</section>
 
-<ul *ngFor="let repo of repositories">
-  <li>
-    <a href="javascript:void(0)" [routerLink]="['details', repo.full_name]">{{ repo.name }}</a>
-    <p>{{ repo.description }}</p>
+<ul class="list-group" >
+  <li class="list-group-item list-group-item-action" *ngFor="let repo of repositories">
+    <a class="" href="javascript:void(0)" [routerLink]="['details', repo.full_name]">
+      <h2 class="card-title">{{ repo.full_name }}</h2>
+      <p>{{ repo.description }}</p>
+    </a>
   </li>
 </ul>

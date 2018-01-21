@@ -1,0 +1,11 @@
+.card-number {
+    font-size: 3rem;
+
+    @media screen and (max-width: 576px) {
+        font-size: 1.5rem;
+    }
+}
+
+.hide {
+    display: none;
+}

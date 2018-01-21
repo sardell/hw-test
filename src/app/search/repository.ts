@@ -4,5 +4,7 @@ export class Repository {
     stargazers_count: number;
     watchers_count: number;
     open_issues_count: number;
+    forks_count: number;
     full_name: string;
+    subscribers_count: number;
 }

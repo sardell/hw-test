@@ -20,11 +20,20 @@ export class SearchRepositoriesService {
     this.repositories = repositories;
   }
 
-  getRepositories(searchTerm: string) {
+  getRepositories(searchTerm: string): Observable < any > {
+    if (!searchTerm) {
+        return Observable.throw('invalid');
+    }
+
     const url = 'https://api.github.com/search/repositories?q=' + searchTerm;
     return this.http.get(url)
       .map((res:Response) => res)
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .catch(this.handleError);
+  }
+
+  private handleError(error: Response | any) {
+    console.error(error);
+    return Observable.throw(error); // <= B
   }
 
 }
