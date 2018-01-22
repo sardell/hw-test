@@ -36,15 +36,18 @@
 </section>
 
 <section class="issues row" *ngIf="issues">
-  <ngb-accordion [closeOthers]="true" activeIds="static-1" class="col-sm-12">
-      <ngb-panel [id]="issue.id" *ngFor="let issue of issues">
-        <ng-template ngbPanelTitle>
-          <span>{{ issue.title }}</span>
-        </ng-template>
-        <ng-template ngbPanelContent>
-          <a [attr.href]="issue.html_url" target="_blank">Link to issue</a>
-          <p>{{ issue.body }}</p>
-        </ng-template>
-      </ngb-panel>
-  </ngb-accordion>
+  <div class="col-sm-12">
+    <h2>Total Open Issues: {{ details.open_issues_count }}</h2>
+    <ngb-accordion [closeOthers]="true" activeIds="static-1">
+        <ngb-panel [id]="issue.id" *ngFor="let issue of issues">
+          <ng-template ngbPanelTitle>
+            <span>{{ issue.title }}</span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            <a [attr.href]="issue.html_url" target="_blank">Link to issue</a>
+            <p>{{ issue.body }}</p>
+          </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+  </div>
 </section>
