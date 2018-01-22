@@ -15,7 +15,11 @@ export class SearchRepositoriesService {
   public repositories: Repository[];
 
   constructor(private http: HttpClient) { }
-
+  
+  checkRepositories() {
+    if (this.repositories !== null) return this.repositories;
+  }
+  
   setRepositories(repositories) {
     this.repositories = repositories;
   }
