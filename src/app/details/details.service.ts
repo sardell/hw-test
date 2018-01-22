@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 import { Repository } from '../search/repository';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable()
 export class DetailsService {
@@ -21,16 +18,24 @@ export class DetailsService {
     this.fullName = repo.full_name;
   }
 
-  getDetails(currentID?: string) {
+  getDetails(currentID: string) {
     const url = "https://api.github.com/repos/" + currentID;
     return this.http.get(url)
       .map((res:Response) => res)
+      .catch(this.handleError);
   }
 
-  getIssues(fullName?: string) {
+  getIssues(fullName: string) {
     const url = "https://api.github.com/repos/" + fullName + "/issues";
     return this.http.get(url)
       .map((res:Response) => res)
+      .catch(this.handleError);
   }
+
+  private handleError(error: Response | any) {
+    console.error(error);
+    return Observable.throw(error);
+  }
+
 
 }
