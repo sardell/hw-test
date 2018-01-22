@@ -1,7 +1,9 @@
-<section *ngIf="details" [class.hide]="showIssues">
-  <h1>{{ details.full_name }}</h1>
-  <p>{{ details.description }}</p>
-  <a href="{{ details.html_url }}" target="_blank">{{ details.html_url }} </a>
+<section *ngIf="details" class="details">
+  <div class="details-main-info">
+    <h1>{{ details.full_name }}</h1>
+    <p>{{ details.description }}</p>
+    <a href="{{ details.html_url }}" target="_blank">{{ details.html_url }} </a>
+  </div>
   <div class="card-deck">
     <div class="card">
       <svg height="64" class="card-img-top bg-primary octicon octicon-repo-forked" viewBox="0 0 10 16" version="1.1" width="40" aria-hidden="true">
@@ -33,15 +35,16 @@
   </div>
 </section>
 
-
-<section *ngIf="issues">
-  <button (click)="toggleIssues()">Toggle Issues</button>
-  <div [class.hide]="!showIssues">
-    <ul class="list-group">
-      <li class="list-group-item" *ngFor="let issue of issues">
-        <a href="{{ issue.html_url }}" target="_blank">{{ issue.title }}</a>
-      </li>
-    </ul>
-  </div>
-
+<section class="issues row" *ngIf="issues">
+  <ngb-accordion [closeOthers]="true" activeIds="static-1" class="col-sm-12">
+      <ngb-panel [id]="issue.id" *ngFor="let issue of issues">
+        <ng-template ngbPanelTitle>
+          <span>{{ issue.title }}</span>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <a [attr.href]="issue.html_url" target="_blank">Link to issue</a>
+          <p>{{ issue.body }}</p>
+        </ng-template>
+      </ngb-panel>
+  </ngb-accordion>
 </section>
