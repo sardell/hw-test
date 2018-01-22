@@ -6,10 +6,6 @@ import 'rxjs/add/operator/map';
 
 import { Repository } from './repository';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-
 @Injectable()
 export class SearchRepositoriesService {
   public repositories: Repository[];
