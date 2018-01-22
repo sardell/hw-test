@@ -8,8 +8,7 @@ import { Repository } from './repository';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
-  providers: [ SearchRepositoriesService ]
+  styleUrls: ['./search.component.scss']
 })
 
 export class SearchComponent implements OnInit {
@@ -22,12 +21,14 @@ export class SearchComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.repositories = this.searchRepoService.checkRepositories();
   }
 
   doSearch() {
     if (this.txtQuery != null && this.txtQuery.length > 1) {
       this.searchRepoService.getRepositories(this.txtQuery).subscribe(
-        data => this.repositories = data.items
+        data => { this.repositories = data.items;
+        this.searchRepoService.setRepositories(this.repositories); }
       );
     }
   }

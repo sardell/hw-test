@@ -8,6 +8,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { SearchComponent } from './search/search.component';
 import { DetailsComponent } from './details/details.component';
 import { DetailsService } from './details/details.service';
+import { SearchRepositoriesService } from './search/search-repositories.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { DetailsService } from './details/details.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [DetailsService],
+  providers: [DetailsService, SearchRepositoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
