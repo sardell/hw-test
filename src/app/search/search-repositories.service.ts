@@ -22,7 +22,7 @@ export class SearchRepositoriesService {
 
   getRepositories(searchTerm: string): Observable < any > {
     if (!searchTerm) {
-        return Observable.throw('invalid');
+      return Observable.throw('invalid');
     }
 
     const url = 'https://api.github.com/search/repositories?q=' + searchTerm;
