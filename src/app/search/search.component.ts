@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
   doSearch() {
     if (this.txtQuery != null && this.txtQuery.length > 1) {
       this.searchRepoService.getRepositories(this.txtQuery).subscribe(
-        data => { this.repositories = data.items;
+        data => { this.repositories = data;
         this.searchRepoService.setRepositories(this.repositories); }
       );
     }
