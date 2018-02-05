@@ -9,6 +9,7 @@ import { Repository } from './repository';
 @Injectable()
 export class SearchRepositoriesService {
   public repositories: Repository[];
+  private url = 'https://api.github.com/search/repositories?q=';
 
   constructor(private http: HttpClient) { }
   
@@ -20,15 +21,12 @@ export class SearchRepositoriesService {
     this.repositories = repositories;
   }
 
-  getRepositories(searchTerm: string): Observable < any > {
+  getRepositories(searchTerm: string): Observable<Repository[]> {
     if (!searchTerm) {
-        return Observable.throw('invalid');
+      return Observable.throw('invalid');
     }
 
-    const url = 'https://api.github.com/search/repositories?q=' + searchTerm;
-    return this.http.get(url)
-      .map((res:Response) => res)
-      .catch(this.handleError);
+    return this.http.get<Repository[]>(this.url + searchTerm);
   }
 
   private handleError(error: Response | any) {
