@@ -10,8 +10,6 @@ describe('SearchRepositoriesService', () => {
   let mockHttp: HttpTestingController;
 
   beforeEach(() => {
-    // mockHttp = jasmine.createSpyObj('mockHttp', ['get']);
-    // repoSearchService = new SearchRepositoriesService(mockHttp);
     TestBed.configureTestingModule({
       imports: [FormsModule, HttpClientTestingModule],
       providers: [SearchRepositoriesService]
@@ -30,6 +28,7 @@ describe('SearchRepositoriesService', () => {
   
   describe('getRepositories', () => {
     it('should retrieve repositories from the GitHub API via GET', () => {
+
       const dummyRepos = [{
         html_url: 'https://github.com/twbs/bootstrap',
         description: 'The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.',
@@ -40,6 +39,7 @@ describe('SearchRepositoriesService', () => {
         full_name: 'twbs/bootstrap',
         subscribers_count: 121435
       }];
+
       repoSearchService.getRepositories('bootstrap').subscribe(repos => {
         expect(repos.length).toBe(1);
         expect(repos).toEqual(dummyRepos);
